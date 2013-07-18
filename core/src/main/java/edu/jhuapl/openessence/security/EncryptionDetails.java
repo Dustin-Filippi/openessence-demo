@@ -24,35 +24,25 @@
  * FOR LOST PROFITS.
  */
 
-import edu.jhuapl.openessence.datasource.FieldType
-import edu.jhuapl.openessence.groovy.GroovyDataSource
+package edu.jhuapl.openessence.security;
 
-class TemperatureGroups extends GroovyDataSource {
+public class EncryptionDetails {
 
-    TemperatureGroups() {
+    private String salt;
+    private String algorithm;
 
-        setMetaData([grid: [sortcolumn: 'Order', sortorder: 'asc']])
+    public EncryptionDetails(String newSalt, String newAlgorithm) {
+        this.salt = newSalt;
+        this.algorithm = newAlgorithm;
+    }
 
-        init([id: 'Id', sqlCol: 'id', sqlType: FieldType.INTEGER, isResult: true, isFilter: true,
-                metaData: [grid: [width: 100]]])
+    public String getSalt() {
+        return salt;
+    }
 
-        init([id: 'TempGroupId', sqlCol: 'description', sqlType: FieldType.TEXT, isResult: true,
-                     metaData: [grid: [width: 200]]])
-
-        init([id: 'TemperatureGroup', sqlCol: 'description', sqlType: FieldType.TEXT, isResult: true,
-                metaData: [grid: [width: 200]]])
-
-        init([id: 'Min_Inclusive', sqlCol: 'min', sqlType: FieldType.DOUBLE, isResult: true,
-                metaData: [grid: [width: 200]]])
-
-        init([id: 'Max_Inclusive', sqlCol: 'max', sqlType: FieldType.DOUBLE, isResult: true,
-                metaData: [grid: [width: 200]]])
-
-        init([id: 'Order', sqlCol: 'order_id', sqlType: FieldType.TEXT, isResult: true,
-                metaData: [grid: [width: 100]]])
-
-        setDimensions(dimensionBeans);
-        setBaseDetailsQuery('temperature_groups');
+    public String getAlgorithm() {
+        return algorithm;
     }
 
 }
+
